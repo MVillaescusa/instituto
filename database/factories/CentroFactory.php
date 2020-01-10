@@ -10,6 +10,7 @@ $factory->define(Centro::class, function (Faker $faker) {
             'codigo' => $faker->unique()->randomNumber,
             'nombre' => $faker->company,
             'web' => $faker->url,
+            //'coordinador' => factory(App\User::class),
             'verificado' => $faker->boolean($chanceOfGettingTrue = 80)
     ];
 });
