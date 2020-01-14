@@ -11,21 +11,10 @@ class GruposTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('grupos')->truncate();
-
-        
-        /*
         if(env('APP_ENV') != 'production') {
-            DB::table('users')->truncate();
-            DB::table('centros')->truncate();
-            // Create 3 App\User instances...
-            $users = factory(App\User::class, 3)->create()
-                ->each(function ($user) {
-                $user->centros()->save(factory(App\Centro::class)->make());
-            });
-
-            $users = factory(App\User::class, 97)->create();
+            DB::table('grupos')->truncate();
+            // Creacion de 20 App\Grupo instances...
+            $grupo = factory(App\Grupo::class, 20)->create();
         }
-        */
     }
 }
