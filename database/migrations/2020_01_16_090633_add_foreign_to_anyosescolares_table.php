@@ -26,7 +26,6 @@ class AddForeignToAnyosescolaresTable extends Migration
     public function down()
     {
         Schema::table('anyosescolares', function (Blueprint $table) {
-            /* tabla_columna_foreign */
             $table->dropForeign('anyosescolares_centro_foreign');
         });
     }
