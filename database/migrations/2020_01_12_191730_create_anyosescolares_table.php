@@ -14,13 +14,6 @@ class CreateAnyosescolaresTable extends Migration
     public function up()
     {
         Schema::create('anyosescolares', function (Blueprint $table) {
-            //$table->bigIncrements('id');
-            //$table->dateTime('fechainicio');
-            //$table->dateTime('fechafinal');
-            //$table->integer('centro')->unsigned();
-            //$table->timestamps();
-
-            //MARCOS
             $table->bigIncrements('id');
             $table->dateTime('fechainicio', 0);
             $table->dateTime('fechafinal', 0);
