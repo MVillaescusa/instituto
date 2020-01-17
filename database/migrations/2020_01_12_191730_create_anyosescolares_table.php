@@ -24,7 +24,7 @@ class CreateAnyosescolaresTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('fechainicio', 0);
             $table->dateTime('fechafinal', 0);
-            $table->unsignedInteger('centro');
+            $table->bigInteger('centro')->unsigned();
             $table->timestamps();
         });
     }

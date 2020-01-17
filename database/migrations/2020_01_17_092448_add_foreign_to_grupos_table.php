@@ -16,7 +16,7 @@ class AddForeignToGruposTable extends Migration
         Schema::table('grupos', function (Blueprint $table) {
             $table->foreign('anyoescolar')->references('id')->on('anyosescolares')->onDelete('cascade');
             $table->foreign('nivel')->references('id')->on('niveles')->onDelete('cascade');
-            $table->foreign('creador')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('creador')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
