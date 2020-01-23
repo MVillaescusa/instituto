@@ -13,6 +13,8 @@ class Anyoescolar extends Model
      */
     protected $table = 'anyosescolares';
 
+    protected $fillable = ['fechainicio','fechafinal','centro'];
+
     /**
      * Get the centro that owns the año escolar.
      */
