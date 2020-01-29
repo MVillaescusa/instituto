@@ -95,4 +95,8 @@ class User extends Authenticatable
     public function tutores() {
         return $this->hasMany('App\Tutorizado', 'tutor');
     }
+
+    public function isSuperAdmin() {
+        return $this->email === config('app.superadmin_email');
+    }
 }

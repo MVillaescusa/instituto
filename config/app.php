@@ -225,7 +225,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
 
+    'superadmin_email' => env('SUPERADMIN_EMAIL'),
+    'superadmin_password' => env('SUPERADMIN_PASSWORD'),
+    'superadmin_first_name' => env('SUPERADMIN_FIRST_NAME', 'Admin'),
+    'superadmin_last_name' => env('SUPERADMIN_LAST_NAME', 'Super'),
 ];

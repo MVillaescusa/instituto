@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CentroController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Centro::class, 'centro');
+    }
+
     /**
      * Display a listing of the resource.
      *

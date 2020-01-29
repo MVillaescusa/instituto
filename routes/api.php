@@ -19,38 +19,40 @@ use Tqdev\PhpCrudApi\Config;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('materias', 'API\MateriaController')->parameters([
-    'materia' => 'materia'
-]);
-Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
-// Rutas adicionales a las de los Resources
-Route::get('users/profile/{user_id}', 'API\UserController@profile');
-
-Route::apiResource('users', 'API\UserController')->parameters([
-    'users' => 'user'
-]);
-
-Route::apiResource('centros', 'API\CentroController')->parameters([
-    'centros' => 'centro'
-]);
-
-Route::apiResource('niveles', 'API\NivelController')->parameters([
-    'niveles' => 'nivel'
-]);
-
-Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
-    'materiasimpartidas' => 'materiaimpartida'
-]);
-
-Route::apiResource('anyosescolares', 'API\AnyoEscolarController')->parameters(['anyosescolares' => 'anyoescolar']);
-
-Route::apiResource('grupos', 'API\GrupoController');
-
-
-Route::apiResource('matriculas', 'API\MatriculaController');
-Route::apiResource('tutorizados', 'API\TutorizadoController');
-
+Route::middleware('auth:api')->group(function(){
+    Route::apiResource('materias', 'API\MateriaController')->parameters([
+        'materia' => 'materia'
+    ]);
+    Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
+    
+    // Rutas adicionales a las de los Resources
+    Route::get('users/profile/{user_id}', 'API\UserController@profile');
+    
+    Route::apiResource('users', 'API\UserController')->parameters([
+        'users' => 'user'
+    ]);
+    
+    Route::apiResource('centros', 'API\CentroController')->parameters([
+        'centros' => 'centro'
+    ]);
+    
+    Route::apiResource('niveles', 'API\NivelController')->parameters([
+        'niveles' => 'nivel'
+    ]);
+    
+    Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
+        'materiasimpartidas' => 'materiaimpartida'
+    ]);
+    
+    Route::apiResource('anyosescolares', 'API\AnyoEscolarController')->parameters(['anyosescolares' => 'anyoescolar']);
+    
+    Route::apiResource('grupos', 'API\GrupoController');
+    
+    
+    Route::apiResource('matriculas', 'API\MatriculaController');
+    Route::apiResource('tutorizados', 'API\TutorizadoController');
+});
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $databaseConnection = config('database.default');
