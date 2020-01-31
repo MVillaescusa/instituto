@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class NivelController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Nivel::class, 'nivel');
+    }
+
     /**
      * Display a listing of the resource.
      *

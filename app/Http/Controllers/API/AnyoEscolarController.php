@@ -6,9 +6,16 @@ use App\Anyoescolar;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AnyoEscolarResource;
 use Illuminate\Http\Request;
+use App\Centro;
+use Illuminate\Support\Facades\Auth;
 
 class AnyoEscolarController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Anyoescolar::class, 'anyoescolar');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +35,10 @@ class AnyoEscolarController extends Controller
      */
     public function store(Request $request)
     {
-        $anyoescolar = Anyoescolar::create(json_decode($request->getContent(), true));
-
+        $anyo = json_decode($request->getContent(),true);
+        $centro = Centro::where('coordinador', "=", Auth::id())->get();
+        $anyo['centro'] = $centro[0]->id; 
+        $anyoescolar = Anyoescolar::create($anyo, true);
 
         return new AnyoEscolarResource($anyoescolar);
     }

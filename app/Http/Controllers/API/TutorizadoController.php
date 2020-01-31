@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Tutorizado;
 use Illuminate\Http\Request;
 use App\Http\Resources\TutorizadoResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TutorizadoController extends Controller
 {
@@ -27,7 +29,12 @@ class TutorizadoController extends Controller
      */
     public function store(Request $request)
     {
-        $tutorizado = Tutorizado::create(json_decode($request->getContent(), true));
+        $tutorizado = json_decode($request->getContent(), true);
+        if (!Auth::user()->isSuperAdmin()) {
+            $tutorizado['tutor'] = Auth::id();
+        }
+        $tutorizado['verificadoToken'] = Str::random(32);
+        $tutorizado = Tutorizado::create($tutorizado);
         return new TutorizadoResource($tutorizado);
     }
 

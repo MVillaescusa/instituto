@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class MateriaimpartidaController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Materiaimpartida::class, 'materiaimpartida');
+    }
+
     /**
      * Display a listing of the resource.
      *
