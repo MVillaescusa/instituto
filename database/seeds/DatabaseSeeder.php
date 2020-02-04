@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PeriodoslectivosTableSeeder::class);
         $this->call(PeridoclaseTableSeeder::class);
         $this->call(PeriodoclaseTableSeeder::class);
+        $this->call(AulasTableSeeder::class);
         Schema::enableForeignKeyConstraints();
     }
 }

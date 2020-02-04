@@ -30,13 +30,10 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('tutorizados', 'API\TutorizadoController');
 
-<<<<<<< HEAD
     Route::get('centros/sustituciones/{dia_semana?}/{hora_inicio?}', 'API\CentroController@sustituciones');
     
     Route::apiResource('periodoslectivos', 'PeriodolectivoController');
 
-=======
->>>>>>> a mitad de esto, arreglando la migracion por el nombre
     Route::apiResource('centros', 'API\CentroController')->parameters([
         'centros' => 'centro'
         ]);    
@@ -56,9 +53,6 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('materias', 'API\MateriaController')->parameters([
         'materia' => 'materia'
     ]);
-<<<<<<< HEAD
-
-    Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
     Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
         'materiasimpartidas' => 'materiaimpartida'
@@ -67,7 +61,6 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('faltasProfesores', 'API\FaltaProfesorController')->parameters([
         'faltasProfesores' => 'faltaProfesor'
     ]);
-=======
 
     Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
@@ -77,7 +70,6 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('periodosclases', 'PeriodoclaseController');
 
->>>>>>> a mitad de esto, arreglando la migracion por el nombre
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {

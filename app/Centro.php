@@ -34,6 +34,10 @@ class Centro extends Model
         );
     }
 
+    public function aulas(){
+        return $this->hasMany('App\Aula', 'centro_id');
+    }
+
 
 
 
