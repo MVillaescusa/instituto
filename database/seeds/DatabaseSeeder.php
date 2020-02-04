@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(GruposTableSeeder::class);
         $this->call(MateriasimpartidasTableSeeder::class);
         $this->call(NivelesTableSeeder::class);
+<<<<<<< HEAD
         $this->call(PeriodoslectivosTableSeeder::class);
+=======
+        $this->call(PeridoclaseTableSeeder::class);
+>>>>>>> a mitad de esto, arreglando la migracion por el nombre
         Schema::enableForeignKeyConstraints();
     }
 }
