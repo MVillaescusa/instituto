@@ -11,9 +11,9 @@ class FaltaProfesor extends Model
     /**
      * Get the periodos the time of the journey
      */
-    public function periodosclases()
+    public function periodosclasesObject()
     {
-        return $this->hasMany('App\Periodosclases', 'FaltaProfesor');
+        return $this->belongsTo('App\Periodosclases', 'FaltaProfesor');
     }
 
     /**
@@ -27,7 +27,7 @@ class FaltaProfesor extends Model
     /**
      * Get the professor who tke cares the class
      */
-    public function profesorguardiaObjectObject()
+    public function profesorguardiaObject()
     {
         return $this->belongsTo('App\User', 'profesor_guardia');
     }
