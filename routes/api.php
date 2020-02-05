@@ -36,7 +36,7 @@ Route::middleware('auth:api')->group(function() {
     ]);
 
     Route::apiResource('anyosescolares', 'API\AnyoEscolarController')->parameters(['anyosescolares' => 'anyoescolar']);
-  
+
     Route::apiResource('niveles', 'API\NivelController')->parameters([
         'niveles' => 'nivel'
     ]);
@@ -55,6 +55,10 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
         'materiasimpartidas' => 'materiaimpartida'
+    ]);
+
+    Route::apiResource('faltasProfesores', 'API\FaltaProfesorController')->parameters([
+        'faltasProfesore' => 'faltaProfesor'
     ]);
 });
 
