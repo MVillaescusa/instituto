@@ -13,7 +13,7 @@ class AulasTableSeeder extends Seeder
     {
         if(env('APP_ENV') != 'production') {
             DB::table('aulas')->truncate();
-            $aulas = factory(App\Aula::class, 20)->create();
+            $aulas = factory(\App\Aula::class, 20)->create();
         }
     }
 }
