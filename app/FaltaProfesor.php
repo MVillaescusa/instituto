@@ -27,7 +27,7 @@ class FaltaProfesor extends Model
     /**
      * Get the professor who tke cares the class
      */
-    public function profesorguardiaObject()
+    public function profesorguardiaObjectObject()
     {
         return $this->belongsTo('App\User', 'profesor_guardia');
     }
