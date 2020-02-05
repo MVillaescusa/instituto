@@ -15,7 +15,7 @@ class PeriodoclaseController extends Controller
      */
     public function index()
     {
-        //
+        return PeriodoclaseResource::collection(Periodoclase::paginate());
     }
 
     /**
@@ -26,7 +26,9 @@ class PeriodoclaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $periodoclase = json_decode($request->getContent(), true);
+        $periodoclase = Tutorizado::create($periodoclase);
+        return new PeriodoclaseResource($periodoclase);
     }
 
     /**
@@ -37,7 +39,7 @@ class PeriodoclaseController extends Controller
      */
     public function show(Periodoclase $periodoclase)
     {
-        //
+        return new PeriodoclaseResource($periodoclase);
     }
 
     /**
@@ -49,7 +51,8 @@ class PeriodoclaseController extends Controller
      */
     public function update(Request $request, Periodoclase $periodoclase)
     {
-        //
+        $periodoclase->update(json_decode($request->getContent(), true));
+        return new PeriodoclaseResource($periodoclase);
     }
 
     /**
@@ -60,6 +63,6 @@ class PeriodoclaseController extends Controller
      */
     public function destroy(Periodoclase $periodoclase)
     {
-        //
+        $periodoclase->delete();
     }
 }

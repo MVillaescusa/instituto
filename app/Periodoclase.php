@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Periodoclase extends Model
 {
+    protected $table = "periodosclases";
     protected $fillable = ['periodo_id','materiaimpartida_id', 'aula_id'];
 
     public function periodoObject() {

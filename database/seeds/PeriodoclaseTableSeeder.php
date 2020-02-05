@@ -23,7 +23,7 @@ class PeriodoclaseTableSeeder extends Seeder
                     $periodolectivo,
                     $aulas[rand(0, count($aulas)-1)],
                     $materiasimpartidas[rand(0, count($materiasimpartidas)-1)]
-                ])
+                ]);
             });
         }
     }
