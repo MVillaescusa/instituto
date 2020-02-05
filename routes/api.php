@@ -37,26 +37,26 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('anyosescolares', 'API\AnyoEscolarController')->parameters(['anyosescolares' => 'anyoescolar']);
   
-        Route::apiResource('niveles', 'API\NivelController')->parameters([
-            'niveles' => 'nivel'
-            ]);
+    Route::apiResource('niveles', 'API\NivelController')->parameters([
+        'niveles' => 'nivel'
+    ]);
 
     Route::put('grupos/asignaTutor/{grupo_id}/{user_id}', 'API\GrupoController@asignaTutor');
 
     Route::apiResource('grupos', 'API\GrupoController');
 
-            Route::apiResource('matriculas', 'API\MatriculaController');
+    Route::apiResource('matriculas', 'API\MatriculaController');
 
-            Route::apiResource('materias', 'API\MateriaController')->parameters([
-                'materia' => 'materia'
-                ]);
+    Route::apiResource('materias', 'API\MateriaController')->parameters([
+        'materia' => 'materia'
+    ]);
 
-                Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
+    Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
-                Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
-                    'materiasimpartidas' => 'materiaimpartida'
-                    ]);
-                });
+    Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
+        'materiasimpartidas' => 'materiaimpartida'
+    ]);
+});
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $databaseConnection = config('database.default');
