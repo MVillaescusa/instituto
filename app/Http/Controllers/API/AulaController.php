@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Aula;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AulaResource;
 use Illuminate\Http\Request;
 
 class AulaController extends Controller
@@ -15,7 +16,7 @@ class AulaController extends Controller
      */
     public function index()
     {
-        echo "ola";
+        return AulaResource::collection(Aula::paginate());
     }
 
     /**
@@ -26,7 +27,12 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aula = json_decode($request->getContent(), true);
+
+        //falta añadir el policy
+        $centro = Aula::create($aula);
+
+        return new AulaResource($centro);
     }
 
     /**
@@ -37,7 +43,7 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        //
+        return new AulaResource($aula);
     }
 
     /**
@@ -49,7 +55,8 @@ class AulaController extends Controller
      */
     public function update(Request $request, Aula $aula)
     {
-        //
+        $aula->update(json_decode($request->getContent(), true));
+        return new AulaResource($aula);
     }
 
     /**
@@ -60,6 +67,9 @@ class AulaController extends Controller
      */
     public function destroy(Aula $aula)
     {
-        //
+        if($aula->delete()){
+            echo "Se ha borrado el aula con éxito";
+        }
+
     }
 }
