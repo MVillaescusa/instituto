@@ -58,7 +58,7 @@ Route::middleware('auth:api')->group(function() {
     ]);
 
     Route::apiResource('faltasProfesores', 'API\FaltaProfesorController')->parameters([
-        'faltasProfesore' => 'faltaProfesor'
+        'faltasProfesores' => 'faltaProfesor'
     ]);
 });
 
