@@ -11,7 +11,7 @@ class FaltaProfesor extends Model
     /**
      * Get the periodos the time of the journey
      */
-    public function periodosclasesObject()
+    public function periodoclaseObject()
     {
         return $this->belongsTo('App\Periodosclases', 'FaltaProfesor');
     }
