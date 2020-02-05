@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Periodolectivo;
 use Illuminate\Http\Request;
+use App\Http\Resources\PeriodolectivoResource;
 
 class PeriodolectivoController extends Controller
 {
@@ -15,7 +16,7 @@ class PeriodolectivoController extends Controller
      */
     public function index()
     {
-        //
+        return PeriodolectivoResource::collection(Periodolectivo::paginate());
     }
 
     /**
@@ -26,7 +27,8 @@ class PeriodolectivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $periodo = Periodolectivo::create(json_decode($request->getContent(), true));
+        return new PeriodolectivoResource($periodo);
     }
 
     /**
@@ -35,9 +37,9 @@ class PeriodolectivoController extends Controller
      * @param  \App\Periodolectivo  $periodolectivo
      * @return \Illuminate\Http\Response
      */
-    public function show(Periodolectivo $periodolectivo)
+    public function show(Periodolectivo $periodo)
     {
-        //
+        return new PeriodolectivoResource($periodo);
     }
 
     /**
@@ -47,9 +49,10 @@ class PeriodolectivoController extends Controller
      * @param  \App\Periodolectivo  $periodolectivo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Periodolectivo $periodolectivo)
+    public function update(Request $request, Periodolectivo $periodo)
     {
-        //
+        $periodo->update(json_decode($request->getContent(), true));
+        return new PeriodolectivoResource($periodo);
     }
 
     /**
@@ -58,8 +61,8 @@ class PeriodolectivoController extends Controller
      * @param  \App\Periodolectivo  $periodolectivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Periodolectivo $periodolectivo)
+    public function destroy(Periodolectivo $periodo)
     {
-        //
+        $periodo->delete();
     }
 }

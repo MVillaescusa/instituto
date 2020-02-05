@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Periodolectivo extends Model
 {
+    protected $fillable = ['dia', 'hora_inicio', 'hora_fin', 'anyoescolar_id'];
     public function periodosclases()
     {
         return $this->hasMany('App\Periodosclase', 'periodo_id');

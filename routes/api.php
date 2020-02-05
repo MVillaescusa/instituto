@@ -32,6 +32,8 @@ Route::middleware('auth:api')->group(function() {
 
     Route::get('centros/sustituciones/{dia_semana?}/{hora_inicio?}', 'API\CentroController@sustituciones');
     
+    Route::apiResource('periodoslectivos', 'PeriodolectivoController');
+
     Route::apiResource('centros', 'API\CentroController')->parameters([
         'centros' => 'centro'
         ]);    
