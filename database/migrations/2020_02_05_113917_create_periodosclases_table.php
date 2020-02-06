@@ -15,9 +15,9 @@ class CreatePeriodosclasesTable extends Migration
     {
         Schema::create('periodosclases', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('periodo_id');
-            $table->bigInteger('materiaimpartida_id');
-            $table->bigInteger('aula_id');
+            $table->bigInteger('periodo_id')->unsigned();
+            $table->bigInteger('materiaimpartida_id')->unsigned();
+            $table->bigInteger('aula_id')->unsigned();
             $table->timestamps();
         });
     }
