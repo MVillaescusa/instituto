@@ -18,7 +18,7 @@ class CreatePeriodolectivosTable extends Migration
             $table->enum('dia', ['L', 'M', 'X', 'J', 'V']);
             $table->time('hora_inicio', 0);
             $table->time('hora_fin', 0);
-            $table->integer('anyoescolar_id');
+            $table->bigInteger('anyoescolar_id')->unsigned();
             $table->timestamps();
         });
     }
