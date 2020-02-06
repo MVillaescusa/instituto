@@ -16,7 +16,7 @@ class PeriodoslectivosTableSeeder extends Seeder
         $horas_fin = array('09:10', '10:05', '11:30', '12:25', '13:20', '14:15');;
 
         if(env('APP_ENV') != 'production') {
-            DB::table('periodolectivos')->truncate();
+            DB::table('periodoslectivos')->truncate();
 
             for ($i = 0; $i < 5; $i++) {
                 for ($j = 0; $j < 6; $j++) {
