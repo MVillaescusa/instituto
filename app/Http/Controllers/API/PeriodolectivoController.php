@@ -15,6 +15,7 @@ class PeriodolectivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    
     {
         return PeriodolectivoResource::collection(Periodolectivo::paginate());
     }

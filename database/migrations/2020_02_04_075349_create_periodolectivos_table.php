@@ -13,7 +13,7 @@ class CreatePeriodolectivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('periodolectivos', function (Blueprint $table) {
+        Schema::create('periodoslectivos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('dia', ['L', 'M', 'X', 'J', 'V']);
             $table->time('hora_inicio', 0);
@@ -30,6 +30,6 @@ class CreatePeriodolectivosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodolectivos');
+        Schema::dropIfExists('periodoslectivos');
     }
 }
