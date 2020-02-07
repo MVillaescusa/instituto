@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
+use App\Anyoescolar;
+use App\Http\Resources\AnyoescolarResource;
+use Carbon\Carbon;
+
 class CentroController extends Controller
 {
     public function __construct()
@@ -104,6 +108,35 @@ class CentroController extends Controller
               return new CentroResource($centro);
 
         }
+    }
 
-}
+    public function sustituciones(User $user, $dia_semana=null, $hora_inicio=null){
+        /*
+        Crea una ruta GET api/centros/sustituciones/{?dia_semana}/{?hora_inicio} que devuelva
+        cuántas sustituciones ha realizado cada docente en cada uno de los periodos lectivos 
+        del anyoescolar correspondiente al momento actual.
+
+        Si se le envían los parámetros opcionales {?dia_semana}/{?hora_inicio}, el listado 
+        se restringirá a ese periodo lectivo.
+        */
+
+        // SELECT * FROM `anyosescolares` WHERE (DATEDIFF(`fechafinal`, CURRENT_DATE) > 0)
+
+        $date = Carbon::parse('2016-09-17 11:00:00');
+        $now = Carbon::now();
+
+        $diff = $date->diffInDays($now);
+        return $diff;
+
+        /* $anyoActual_id = Anyoescolar::where(DATEDIFF(`fechafinal`, now()) > 0)->get();
+        
+        return AnyoescolarResource::collection(Anyoescolar::paginate()); */
+
+        //$periodos = Periodolectivo::where('anyoescolar_id', '=', $anyoActual_id)->get();
+
+        /* mostrar la sentencia sql
+        DB::enableQueryLog();
+        $arr_user = DB::table('users')->select('name', 'email')->get();
+        dd(DB::getQueryLog());*/
+    }
 }
