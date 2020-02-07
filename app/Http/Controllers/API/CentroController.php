@@ -12,8 +12,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
 use App\Anyoescolar;
+use App\Periodolectivo;
 use App\Http\Resources\AnyoescolarResource;
-use Carbon\Carbon;
 
 class CentroController extends Controller
 {
@@ -120,23 +120,17 @@ class CentroController extends Controller
         se restringirá a ese periodo lectivo.
         */
 
-        // SELECT * FROM `anyosescolares` WHERE (DATEDIFF(`fechafinal`, CURRENT_DATE) > 0)
-
-        $date = Carbon::parse('2016-09-17 11:00:00');
-        $now = Carbon::now();
-
-        $diff = $date->diffInDays($now);
-        return $diff;
-
-        /* $anyoActual_id = Anyoescolar::where(DATEDIFF(`fechafinal`, now()) > 0)->get();
+        // devuelve un array con los id de los años actuales
+        $anyosActuales = Anyoescolar::whereDate('fechafinal', ">", now())->get('id');
+        $periodosLectivos = Periodolectivo::whereIn('anyoescolar_id', $anyosActuales);
+        return $periodosLectivos;
         
+        /* $anyoActual = Anyoescolar::where(DATEDIFF(`fechafinal`, now()) > 0)->get();
+        return $anyoActual; */
+        /*        
         return AnyoescolarResource::collection(Anyoescolar::paginate()); */
 
         //$periodos = Periodolectivo::where('anyoescolar_id', '=', $anyoActual_id)->get();
 
-        /* mostrar la sentencia sql
-        DB::enableQueryLog();
-        $arr_user = DB::table('users')->select('name', 'email')->get();
-        dd(DB::getQueryLog());*/
     }
 }
