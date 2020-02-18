@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Anyoescolar;
 use App\Periodolectivo;
+use App\Periodoclase;
+use App\Faltaprofesor;
 use App\Http\Resources\AnyoescolarResource;
 
 class CentroController extends Controller
@@ -110,27 +112,24 @@ class CentroController extends Controller
         }
     }
 
-    public function sustituciones(User $user, $dia_semana=null, $hora_inicio=null){
-        /*
-        Crea una ruta GET api/centros/sustituciones/{?dia_semana}/{?hora_inicio} que devuelva
-        cuántas sustituciones ha realizado cada docente en cada uno de los periodos lectivos 
-        del anyoescolar correspondiente al momento actual.
+    public function sustituciones(User $user, $dia_semana=null, $hora_inicio=null)
+    {
+        $anyosActuales = Anyoescolar::anyoescolarActual();;
+        if ($dia_semana && $hora_inicio){
+            $periodosLectivos = Periodolectivo::whereIn('anyoescolar_id', $anyosActuales)->where([
+                ['dia', '=', $dia_semana],
+                ['hora_inicio', '=', $hora_inicio],
+            ])->get('id');
+        }else{
+            $periodosLectivos = Periodolectivo::whereIn('anyoescolar_id', $anyosActuales)->get('id');
+        }
+        $periodosClases = Periodoclase::whereIn('periodo_id',$periodosLectivos)->get('id');
+        $totalSustituciones = Faltaprofesor::whereIn('periodoclase_id',$periodosClases)->get('profesor_guardia');
+        $counted = $totalSustituciones->countBy('profesor_guardia');
+        $filtrado = $counted->filter(function ($value, $key) {
+            return $key != '';
+        });
 
-        Si se le envían los parámetros opcionales {?dia_semana}/{?hora_inicio}, el listado 
-        se restringirá a ese periodo lectivo.
-        */
-
-        // devuelve un array con los id de los años actuales
-        $anyosActuales = Anyoescolar::whereDate('fechafinal', ">", now())->get('id');
-        $periodosLectivos = Periodolectivo::whereIn('anyoescolar_id', $anyosActuales);
-        return $periodosLectivos;
-        
-        /* $anyoActual = Anyoescolar::where(DATEDIFF(`fechafinal`, now()) > 0)->get();
-        return $anyoActual; */
-        /*        
-        return AnyoescolarResource::collection(Anyoescolar::paginate()); */
-
-        //$periodos = Periodolectivo::where('anyoescolar_id', '=', $anyoActual_id)->get();
-
+        return $filtrado;
     }
 }

@@ -19,18 +19,13 @@ class PeriodoclaseTableSeeder extends Seeder
             $materiasimpartidas = \App\Materiaimpartida::all();
 
             foreach($periodoslectivos as $periodolectivo) {
-                $periodoclase = new \App\Periodoclase;
-                $periodoclase->periodo_id = $periodolectivo->id;
-                $periodoclase->aula_id = $aulas[rand(0, count($aulas)-1)]->id;
-                $periodoclase->materiaimpartida_id = $materiasimpartidas[rand(0, count($materiasimpartidas)-1)]->id;
-
-                $periodoclase->save();
-                /*
-                \App\Periodoclase::create([
-                    $periodolectivo,
-                    $aulas[rand(0, count($aulas)-1)],
-                    $materiasimpartidas[rand(0, count($materiasimpartidas)-1)]
-                ]);*/
+                $periodosclase = factory(App\Periodoclase::class, 6)->create();
+                foreach($periodosclase as $periodoclase) {
+                    $periodoclase->periodo_id = $periodolectivo->id;
+                    $periodoclase->aula_id = $aulas[rand(0, count($aulas)-1)]->id;
+                    $periodoclase->materiaimpartida_id = $materiasimpartidas[rand(0, count($materiasimpartidas)-1)]->id;
+                    $periodoclase->save();
+                }
             };
         }
     }
